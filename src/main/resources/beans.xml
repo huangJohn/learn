@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd
+          http://www.springframework.org/schema/aop
+          http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+>
+
+<bean id="helloworld" class="com.example.service.TestWork"/>
+    <bean id="xiaoli" class="com.example.girl.XiaoLi"/>
+    <bean id="xiaomei" class="com.example.girl.XiaoMei"/>
+    <bean id="getMarried" class="com.example.service.GetMarried">
+        <property name="girl" ref="xiaomei"/>
+    </bean>
+
+    <!--属性注入-->
+    <!--<bean id="customer1" class="com.example.entity.Customer"/>-->
+
+    <!--属性注入-->
+    <bean id="customer2" class="com.example.entity.Customer">
+        <property name="name" value="Tom"/>
+        <property name="sex" value="male"/>
+        <property name="age" value="22"/>
+    </bean>
+
+    <!--构造函数注入-->
+    <!--不会走默认的无参构造函数-->
+    <bean id="customer3" class="com.example.entity.Customer">
+        <constructor-arg type="java.lang.String" value="Jack"/>
+        <constructor-arg type="java.lang.String" value="male"/>
+        <constructor-arg type="int" value="23"/>
+    </bean>
+
+    <!--索引注入-->
+    <!--不会走默认的无参构造函数-->
+    <bean id="customer4" class="com.example.entity.Customer">
+        <constructor-arg index="0" value="Emma"/>
+        <constructor-arg index="1" value="female"/>
+        <constructor-arg index="2" value="24"/>
+    </bean>
+
+    <!--非静态-->
+    <!--<bean id="customerFactory" class="com.example.factory.CustomerFactory"/>-->
+    <!--<bean id="customer5" factory-bean="customerFactory" factory-method="createCustomer"/>-->
+
+    <!--静态-->
+    <bean id="customer6" class="com.example.factory.StaticCustomerFactory" factory-method="createCustomer"/>
+
+
+    <!--注入bean方式注入-->
+    <bean id="record" class="com.example.entity.Record">
+        <property name="company" value="ABCD"/>
+        <property name="position" value="Engineer"/>
+        <property name="address" value="Beijing"/>
+    </bean>
+    <bean id="customer7" class="com.example.entity.Customer2">
+        <property name="name" value="Tom"/>
+        <property name="sex" value="male"/>
+        <property name="age" value="22"/>
+        <property name="record" ref="record"/>
+    </bean>
+
+    <!--注入内部bean方式注入-->
+    <bean id="customer8" class="com.example.entity.Customer2">
+        <property name="name" value="Tom"/>
+        <property name="sex" value="male"/>
+        <property name="age" value="22"/>
+        <property name="record">
+            <bean class="com.example.entity.Record">
+                <property name="company" value="ABCD"/>
+                <property name="position" value="Engineer"/>
+                <property name="address" value="Beijing"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!--空值注入-->
+    <bean id="customer9" class="com.example.entity.Customer2">
+        <property name="name" value="Tom"/>
+        <property name="sex" value="male"/>
+        <property name="age" value="22"/>
+        <property name="record">
+            <null/>
+        </property>
+    </bean>
+
+    <!--级联注入-->
+    <bean id="customer10" class="com.example.entity.Customer3">
+        <property name="name" value="Tom"/>
+        <property name="sex" value="male"/>
+        <property name="age" value="22"/>
+        <property name="record.company" value="ABCD"/>
+        <property name="record" ref="record"/>
+    </bean>
+
+    <!--集合注入-->
+    <bean id="customer11" class="com.example.entity.Customer4">
+        <property name="name" value="Tom"/>
+        <property name="sex" value="male"/>
+        <property name="age" value="22"/>
+        <property name="record" ref="record"/>
+        <property name="hobbies">
+            <!--列表-->
+            <list>
+                <value>sing</value>
+                <value>dance</value>
+            </list>
+        </property>
+        <property name="relatives">
+            <!--set-->
+            <set>
+                <value>张三</value>
+                <value>李四</value>
+            </set>
+        </property>
+        <property name="group">
+            <!--map-->
+            <map>
+                <entry key="dasd" value="13212341234"/>
+                <entry key="asdasd" value="13256785678"/>
+            </map>
+        </property>
+        <property name="properties">
+            <!--props-->
+            <props>
+                <prop key="qqqq">1</prop>
+                <prop key="wwww">2</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- ==============================利用spring ProxyFactoryBean 自己的aop配置================================ -->
+    <!-- 声明一个业务类 -->
+    <bean id="baseBusiness" class="com.example.service.impl.BaseBusiness" />
+    <!-- 声明通知类 -->
+    <bean id="baseBefore" class="com.example.advice.BaseBeforeAdvice" />
+    <bean id="baseAfterReturn" class="com.example.advice.BaseAfterReturnAdvice" />
+    <bean id="baseAfterThrows" class="com.example.advice.BaseAfterThrowsAdvice" />
+    <bean id="baseAround" class="com.example.advice.BaseAroundAdvice" />
+    <!-- 使用ProxyFactoryBean 产生代理对象 -->
+    <bean id="businessProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 代理对象所实现的接口 ，如果有接口可以这样设置 -->
+        <property name="proxyInterfaces" value="com.example.service.IBaseBusiness"/>
+
+        <!-- 设置目标对象，配置文件中的id为baseBusiness的bean是Spring要代理的对象，及当执行此对象中的方法时，触发4个advice -->
+        <property name="target" ref="baseBusiness"/>
+
+        <!-- 代理对象所使用的advice，即4种通知-->
+        <property name="interceptorNames">
+
+            <list>
+                <value>baseBefore</value>
+                <value>baseAfterReturn</value>
+                <value>baseAfterThrows</value>
+                <value>baseAround</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ==============================利用spring自己的aop配置================================ -->
+    <!-- 声明一个业务类 -->
+    <bean id="baseBusiness2" class="com.example.service.impl.BaseBusiness" />
+    <!-- 声明通知类 -->
+    <bean id="baseBefore2" class="com.example.advice.BaseBeforeAdvice" />
+    <bean id="baseAfterReturn2" class="com.example.advice.BaseAfterReturnAdvice" />
+    <bean id="baseAfterThrows2" class="com.example.advice.BaseAfterThrowsAdvice" />
+    <bean id="baseAround2" class="com.example.advice.BaseAroundAdvice" />
+
+    <!-- 指定切点匹配类 -->
+    <bean id="pointcut" class="com.example.point.Pointcut" />
+
+    <!-- 前置通知-->
+    <bean id="matchBeforeAdvisor2" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="pointcut"/>
+        <property name="advice" ref="baseBefore2"/>
+    </bean>
+
+    <!-- 后置通知-->
+    <bean id="matchAfterAdvisor2" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="patterns">
+            <list>
+                <value>.*delete</value>
+            </list>
+        </property>
+        <property name="advice" ref="baseAfterReturn2"/>
+    </bean>
+
+    <!-- 环绕通知-->
+    <bean id="matchAroundAdvisor2" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="mappedNames">
+            <list>
+                <value>delete</value>
+            </list>
+        </property>
+        <property name="advice" ref="baseAround2"/>
+    </bean>
+
+    <!-- 使用ProxyFactoryBean 产生代理对象 -->
+    <bean id="businessProxy2" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 代理对象所实现的接口 ，如果有接口可以这样设置 -->
+        <property name="proxyInterfaces" value="com.example.service.IBaseBusiness"/>
+
+        <!-- 设置目标对象 -->
+        <property name="target" ref="baseBusiness2"/>
+        <!-- 代理对象所使用的拦截器 -->
+        <property name="interceptorNames">
+            <list>
+                <value>matchBeforeAdvisor2</value>
+                <value>matchAfterAdvisor2</value>
+                <value>matchAroundAdvisor2</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
