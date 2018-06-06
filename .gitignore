@@ -4,6 +4,8 @@ target/
 out/
 *.iml
 
+*.jpg
+
 # Compiled class file
 *.class
 
