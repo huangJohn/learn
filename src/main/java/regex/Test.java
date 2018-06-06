@@ -23,7 +23,7 @@ public class Test {
         System.out.println(host);
         System.out.println("--------------------");
 
-        Pattern pattern = Pattern.compile("http://.*(?<host>www.\\w+.(com|com.hk)).*");
+        Pattern pattern = Pattern.compile("http://.*(?<host>www.\\w+.(com|com.hk)).*");//后向引用
 //        Pattern pattern = Pattern.compile("http://.*((www.\\w+.com)|(www.\\w+.com.hk)).*");
         Matcher matcher = pattern.matcher(s2);
         while (matcher.find()) {
