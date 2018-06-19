@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Test {
+public class BackRefTest {
 
     public static void main(String[] args) throws MalformedURLException {
 
@@ -16,6 +16,7 @@ public class Test {
         String s2 = "http://@www.baidu.com#@www.kaola.com.hk%/1";
         String s3 = "http://global.163.com/urscookiekey/set163Cookie.html?dataKey=cookie_login_c98369f4b15d40fca481bb2c7d6cde70&redirect=yes&target=http%3A%2F%2F%40www.baidu.com%23%40www.kaola.com%2F1";
         String s4 = "http://global.163.com/urscookiekey/set163Cookie.html?dataKey=cookie_login_c98369f4b15d40fca481bb2c7d6cde70&redirect=yes&target=http%3A%2F%2F%40%23%4%2F1";
+
         String s5 = "http://@www.baidu.com#@www.kaola.com.hk%/1";
 
         URL url = new URL(s5);
@@ -33,6 +34,7 @@ public class Test {
         }
 
         System.out.println("----------------------");
+
         String str = "1云2未3归4来";
         String pattern1 = "\\d{1,}";
         String[] res = GetRegResult(pattern1, str);

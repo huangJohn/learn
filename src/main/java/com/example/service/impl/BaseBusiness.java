@@ -19,6 +19,7 @@ public class BaseBusiness implements IBaseBusiness {
         System.out.println("||///////////////////||");
     }
 
+    @Override
     public String add(String add) {
         System.out.println("||///////////////////||");
         System.out.println("add用户:"+add);
@@ -26,6 +27,7 @@ public class BaseBusiness implements IBaseBusiness {
         return add;
     }
 
+    @Override
     public void modify(Customer obj) {
         System.out.println("|///////////////////||");
         System.out.println("modify用户:"+obj.getName());

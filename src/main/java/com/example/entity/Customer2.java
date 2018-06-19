@@ -10,7 +10,6 @@ public class Customer2 {
     private int age;
     private Record record;
 
-    //由于篇幅关系，请读者自行填充set/get方法
     public Customer2() {
         super();
         // TODO Auto-generated constructor stub

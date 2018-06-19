@@ -1,7 +1,7 @@
 package test;
 
 /**
- * @author zhuanghuang<zhuanghuang   @   corp.netease.com>
+ * @author zhuanghuang
  * @since 2018/5/31
  */
 
