@@ -12,7 +12,7 @@
           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
 >
 
-<bean id="helloworld" class="com.example.service.TestWork"/>
+    <bean id="helloworld" class="com.example.service.TestWork"/>
     <bean id="xiaoli" class="com.example.girl.XiaoLi"/>
     <bean id="xiaomei" class="com.example.girl.XiaoMei"/>
     <bean id="getMarried" class="com.example.service.GetMarried">
@@ -20,7 +20,7 @@
     </bean>
 
     <!--属性注入-->
-    <!--<bean id="customer1" class="com.example.entity.Customer"/>-->
+    <bean id="customer1" class="com.example.entity.Customer"/>
 
     <!--属性注入-->
     <bean id="customer2" class="com.example.entity.Customer">
@@ -46,8 +46,8 @@
     </bean>
 
     <!--非静态-->
-    <!--<bean id="customerFactory" class="com.example.factory.CustomerFactory"/>-->
-    <!--<bean id="customer5" factory-bean="customerFactory" factory-method="createCustomer"/>-->
+    <bean id="customerFactory" class="com.example.factory.CustomerFactory"/>
+    <bean id="customer5" factory-bean="customerFactory" factory-method="createCustomer"/>
 
     <!--静态-->
     <bean id="customer6" class="com.example.factory.StaticCustomerFactory" factory-method="createCustomer"/>
@@ -137,12 +137,12 @@
 
     <!-- ==============================利用spring ProxyFactoryBean 自己的aop配置================================ -->
     <!-- 声明一个业务类 -->
-    <bean id="baseBusiness" class="com.example.service.impl.BaseBusiness" />
+    <bean id="baseBusiness" class="com.example.service.impl.BaseBusiness"/>
     <!-- 声明通知类 -->
-    <bean id="baseBefore" class="com.example.advice.BaseBeforeAdvice" />
-    <bean id="baseAfterReturn" class="com.example.advice.BaseAfterReturnAdvice" />
-    <bean id="baseAfterThrows" class="com.example.advice.BaseAfterThrowsAdvice" />
-    <bean id="baseAround" class="com.example.advice.BaseAroundAdvice" />
+    <bean id="baseBefore" class="com.example.advice.BaseBeforeAdvice"/>
+    <bean id="baseAfterReturn" class="com.example.advice.BaseAfterReturnAdvice"/>
+    <bean id="baseAfterThrows" class="com.example.advice.BaseAfterThrowsAdvice"/>
+    <bean id="baseAround" class="com.example.advice.BaseAroundAdvice"/>
     <!-- 使用ProxyFactoryBean 产生代理对象 -->
     <bean id="businessProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
         <!-- 代理对象所实现的接口 ，如果有接口可以这样设置 -->
@@ -165,15 +165,15 @@
 
     <!-- ==============================利用spring自己的aop配置================================ -->
     <!-- 声明一个业务类 -->
-    <bean id="baseBusiness2" class="com.example.service.impl.BaseBusiness" />
+    <bean id="baseBusiness2" class="com.example.service.impl.BaseBusiness"/>
     <!-- 声明通知类 -->
-    <bean id="baseBefore2" class="com.example.advice.BaseBeforeAdvice" />
-    <bean id="baseAfterReturn2" class="com.example.advice.BaseAfterReturnAdvice" />
-    <bean id="baseAfterThrows2" class="com.example.advice.BaseAfterThrowsAdvice" />
-    <bean id="baseAround2" class="com.example.advice.BaseAroundAdvice" />
+    <bean id="baseBefore2" class="com.example.advice.BaseBeforeAdvice"/>
+    <bean id="baseAfterReturn2" class="com.example.advice.BaseAfterReturnAdvice"/>
+    <bean id="baseAfterThrows2" class="com.example.advice.BaseAfterThrowsAdvice"/>
+    <bean id="baseAround2" class="com.example.advice.BaseAroundAdvice"/>
 
     <!-- 指定切点匹配类 -->
-    <bean id="pointcut" class="com.example.point.Pointcut" />
+    <bean id="pointcut" class="com.example.point.Pointcut"/>
 
     <!-- 前置通知-->
     <bean id="matchBeforeAdvisor2" class="org.springframework.aop.support.DefaultPointcutAdvisor">
@@ -211,11 +211,25 @@
         <!-- 代理对象所使用的拦截器 -->
         <property name="interceptorNames">
             <list>
+                <!--定义的先后顺序影响方法执行顺序-->
                 <value>matchBeforeAdvisor2</value>
                 <value>matchAfterAdvisor2</value>
                 <value>matchAroundAdvisor2</value>
             </list>
         </property>
     </bean>
+
+    <!-- 使用注解的包，包括子集 -->
+    <context:component-scan base-package="com.example"/>
+
+    <!-- 视图解析器 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 定义异常处理器 -->
+    <bean id="exceptionResolver" class="com.example.interceptor.GlobalExceptionInterceptor"/>
 
 </beans>

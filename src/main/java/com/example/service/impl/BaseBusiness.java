@@ -20,11 +20,11 @@ public class BaseBusiness implements IBaseBusiness {
     }
 
     @Override
-    public String add(String add) {
+    public String add(Customer obj) {
         System.out.println("||///////////////////||");
-        System.out.println("add用户:"+add);
+        System.out.println("add用户:"+obj.getName());
         System.out.println("||///////////////////||");
-        return add;
+        return obj.getName();
     }
 
     @Override

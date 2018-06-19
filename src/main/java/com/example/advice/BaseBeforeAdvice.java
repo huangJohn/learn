@@ -11,16 +11,14 @@ import java.lang.reflect.Method;
 public class BaseBeforeAdvice implements MethodBeforeAdvice {
 
     /**
-     * method : 切入的方法 <br>
-     * args ：切入方法的参数 <br>
+     * method : 切入的方法
+     * args ：切入方法的参数
      * target ：目标对象
      */
     @Override
     public void before(Method method, Object[] args, Object target) throws Throwable {
-        System.out.println("======进入before()============");
-        System.out.print("准备在" + target + "对象上用");
-        System.out.print(method + "方法进行对 '");
-        System.out.println(args[0] + "'进行删除！");
-        System.out.println("======退出before()============");
+        System.out.println("======进入before============");
+        System.out.println("准备在" + target + "目标对象上用" + method + "方法操作，参数为 '" + args[0]);
+        System.out.println("======退出before============");
     }
 }

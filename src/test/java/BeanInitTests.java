@@ -20,7 +20,7 @@ public class BeanInitTests {
     public void setUp() throws Exception {
         System.out.println("......junit单元测试是方法之前执行......");
         // 首先读取配置文件，配置文件中的bean将会保存到ApplicationContext的实例中
-        ac = new ClassPathXmlApplicationContext("classpath:beans.xml");
+        ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
     }
     @After
     public void tearDown() throws Exception {

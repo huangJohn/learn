@@ -16,7 +16,7 @@ public interface IBaseBusiness {
 
     public void delete(Customer obj);
 
-    public String add(String obj);
+    public String add(Customer obj);
 
-    public void modify(Customer customer);
+    public void modify(Customer obj);
 }
