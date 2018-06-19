@@ -14,10 +14,7 @@ import java.util.Map;
 
 public class GlobalExceptionInterceptor implements HandlerExceptionResolver {
     @Override
-    public ModelAndView resolveException(HttpServletRequest httpServletRequest,
-                                         HttpServletResponse httpServletResponse,
-                                         Object o,
-                                         Exception e) {
+    public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
 
         ModelAndView mv = new ModelAndView();
         System.out.println("全局异常拦截");

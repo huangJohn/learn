@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HelloWorldController {
 
-    @RequestMapping(value = "welcome", method = RequestMethod.GET)
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String print(Model model) {
         model.addAttribute("info", "welcome to Spring MVC");
         return "helloworld";

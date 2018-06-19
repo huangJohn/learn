@@ -4,20 +4,21 @@ import com.example.constant.ControllerError;
 import com.example.exception.StudyRuntimeException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 public class SampleController {
 
-    @RequestMapping("/{error}")
+    @RequestMapping(value = "/{error}", method = RequestMethod.GET)
     public String testException(@PathVariable("error") String error) {
-        switch (error) {
-            case "0":
+        switch (Integer.parseInt(error)) {
+            case 0:
                 throw new StudyRuntimeException(ControllerError.SYSTEM_ERROR);
-            case "1":
+            case 1:
                 throw new StudyRuntimeException(ControllerError.PARAMETER_INVALID_ERROR);
-            case "2":
+            case 2:
                 throw new StudyRuntimeException(ControllerError.NOT_PERMISSION_ERROR);
             default:
                 throw new StudyRuntimeException(ControllerError.SYSTEM_ERROR);
