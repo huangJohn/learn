@@ -28,6 +28,16 @@ public enum ControllerError {
     }
 
     public String getErrorDesc() {
-        return errorDesc;
+        if (null != errorDesc) {
+            return errorDesc;
+        }
+        return "";
+    }
+
+    public static void main(String[] args) {
+        ControllerError error = getControllerErrorByErrorCode(1);
+        System.out.println(error.getErrorDesc());
+        System.out.println(error.getErrorCode());
+
     }
 }
