@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author zhuanghuang@corp.netease.com
+ * @author zhuanghuang
  * @date 2018/6/19
  */
 

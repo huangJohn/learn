@@ -1,7 +1,7 @@
 package basic;
 
 /**
- * @author zhuanghuang@corp.netease.com
+ * @author zhuanghuang
  * @date 2018/6/19
  */
 

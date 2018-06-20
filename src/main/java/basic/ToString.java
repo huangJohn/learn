@@ -4,7 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * @author zhuanghuang@corp.netease.com
+ * @author zhuanghuang
  * @date 2018/6/19
  */
 

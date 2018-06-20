@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author zhuanghuang@corp.netease.com
+ * @author zhuanghuang
  * @date 2018/6/19
  */
 

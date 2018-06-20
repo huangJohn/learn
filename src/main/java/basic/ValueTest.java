@@ -1,4 +1,4 @@
-package main.java.basic;
+package basic;
 
 
 /**
