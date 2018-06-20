@@ -1,8 +1,6 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author zhuanghuang
@@ -29,5 +27,26 @@ public class Test {
         list.forEach(s -> {
             System.out.println(s);
         });
+
+        System.out.println(System.currentTimeMillis());
+
+        Date date = new Date();
+        long time = date.getTime();
+        System.out.println(time);
+        System.out.println(getSecondTimestamp(date));
+    }
+
+
+    public static int getSecondTimestamp(Date date){
+        if (null == date) {
+            return 0;
+        }
+        String timestamp = String.valueOf(date.getTime());
+        int length = timestamp.length();
+        if (length > 3) {
+            return Integer.valueOf(timestamp.substring(0,length-3));
+        } else {
+            return 0;
+        }
     }
 }
