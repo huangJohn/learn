@@ -1,4 +1,4 @@
-package basic;
+package small_skill;
 
 /**
  * @author zhuanghuang

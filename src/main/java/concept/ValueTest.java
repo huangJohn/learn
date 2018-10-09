@@ -1,4 +1,4 @@
-package basic;
+package concept;
 
 
 /**
@@ -27,6 +27,12 @@ public class ValueTest {
         System.out.println("in main, before, name=" + name);
         pass(name);
         System.out.println("in mian, after, name="+name);
+        System.out.println("-------------------------");
+
+        System.out.println("in main, before, user = "+user.toString());
+        pass1(user);
+        System.out.println("in main, after, user = "+user.toString());
+        System.out.println("-------------------------");
     }
 
     private static void pass(int j) {
@@ -37,20 +43,22 @@ public class ValueTest {
 
     private static void pass(User user) {
 
-        user = new User();//传递副本，但是关键在于有new操作，指向另一块新对象引用地址，操作不改变原对象值
+        user = new User();//传递副本，但是关键在于有new操作，指向另一块新对象引用地址，操作的地址不是原来的地址
         user.setName("fang");
         user.setAge(20);
         System.out.println("in pass, user = " + user.toString());
     }
 
     private static void pass(String name) {
-        name = "song";//传递副本，对于string类型操作先new，本质还是指向新内存地址，操作不改变原对象
+        name = "song";//传递副本，但是对于string类型操作先new，本质还是指向新内存地址，操作不改变原对象
         System.out.println("in pass, name = "+name);
     }
 
-    private static void pass1(String name) {
-        name = "song";//传递副本，对于string类型操作先new，本质还是指向新内存地址，操作不改变原对象
-        System.out.println("in pass, name = "+name);
+    private static void pass1(User user) {
+        //传递副本进来，但是副本和正本的引用指向同一个地址，set操作将改变同一个地址下的属性值，所以main方法中的对象属性已经发生改变了
+        user.setName("fang");
+        user.setAge(20);
+        System.out.println("in pass, user = " + user.toString());
     }
 }
 

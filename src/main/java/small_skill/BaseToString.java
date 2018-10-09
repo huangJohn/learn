@@ -1,4 +1,4 @@
-package basic;
+package small_skill;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
