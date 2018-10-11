@@ -10,7 +10,7 @@ public class EventDispatcherExample {
     /**
      * InputEvent中定义了两个属性X和Y，主要用于在其他Channel中的运算
      */
-    static class InputEvent extends Event {
+    public static class InputEvent extends Event {
 
         private final int x;
         private final int y;
@@ -33,7 +33,7 @@ public class EventDispatcherExample {
     /**
      * 用于存放结果的Event
      */
-    static class ResultEvent extends Event {
+    public static class ResultEvent extends Event {
 
         private final int result;
 
@@ -54,7 +54,7 @@ public class EventDispatcherExample {
 
         @Override
         public void dispatch(ResultEvent message) {
-            System.out.printf("the result is: " + message.getResult());
+            System.out.printf("the result is: %d", message.getResult());
         }
     }
 

@@ -20,7 +20,7 @@ public class Registry {
 
     public void bind(Object subscriber) {
 
-        //获取Subscriber Object的方法集合然后进行绑定
+        //获取Subscriber Object的订阅的方法集合然后进行绑定
         List<Method> subscriberMethods = getSubscriberMethods(subscriber);
         subscriberMethods.forEach(method -> {
             tierSubscriber(subscriber, method);
@@ -29,6 +29,7 @@ public class Registry {
 
     private void tierSubscriber(Object subscriber, Method method) {
 
+        /*拿到@Subscribe注解上的top信息*/
         final Subscribe subscribe = method.getDeclaredAnnotation(Subscribe.class);
         String topic = subscribe.topic();
         //当某topic没有Subscriber Queue时创建一个

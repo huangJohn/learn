@@ -8,7 +8,7 @@ package concurrency.design.event_driven;
 public interface Message {
 
     /**
-     * 返回Message的类型
+     * 返回Message的类型，看作消息事件
      */
     Class<? extends Message> getType();
 

@@ -8,6 +8,10 @@ package concurrency.design.event_driven;
 public interface DynamicRouter<E extends Message> {
 
     /**
+     * 如何分配message到channel上
+     */
+
+    /**
      * 对每一种Message类型注册相关的Channel，只有找到合适的Channel，该Messsage才会被处理
      */
     void registerChannel(Class<? extends Message> messageType, Channel<? extends E> channel);

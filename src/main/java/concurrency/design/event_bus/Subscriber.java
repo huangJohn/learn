@@ -7,10 +7,19 @@ import java.lang.reflect.Method;
  * @date 2018/10/10
  */
 
+/**
+ * 订阅者对象
+ */
 public class Subscriber {
 
+    /**
+     * 对象
+     */
     private final Object subscribeObject;
 
+    /**
+     * 触发的方法
+     */
     private final Method subscribeMethod;
 
     private boolean disable = false;

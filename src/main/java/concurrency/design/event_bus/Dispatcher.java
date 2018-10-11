@@ -16,8 +16,14 @@ public class Dispatcher {
 
     private final EventExceptionHandler exceptionHandler;
 
+    /**
+     * 同步dispatcher
+     */
     public static final Executor SEQ_EXECUTOR_SERVICE = SeqExecutorService.INSTANCE;
 
+    /**
+     * 并发dispatcher
+     */
     public static final Executor PER_THREAD_EXECUTOR_SERVICE = PerThreadExecutorService.INSTANCE;
 
     private Dispatcher(Executor executorService, EventExceptionHandler exceptionHandler) {
@@ -29,10 +35,16 @@ public class Dispatcher {
         return new Dispatcher(executor, exceptionHandler);
     }
 
+    /**
+     * 默认同步构造
+     */
     public static Dispatcher seqDispatcher(EventExceptionHandler exceptionHandler) {
         return new Dispatcher(SEQ_EXECUTOR_SERVICE, exceptionHandler);
     }
 
+    /**
+     * 默认并发构造
+     */
     public static Dispatcher perThreadDispatche(EventExceptionHandler exceptionHandler) {
         return new Dispatcher(PER_THREAD_EXECUTOR_SERVICE, exceptionHandler);
     }
@@ -54,9 +66,9 @@ public class Dispatcher {
                 .filter(subscriber -> !subscriber.isDisable())//过滤失效的
                 .filter(subscriber -> {
                     Method subscribeMethod = subscriber.getSubscribeMethod();//得到订阅的方法
-                    Class<?> aClass = subscribeMethod.getParameterTypes()[0];//得到订阅的参数类型Class
-                    return (aClass.isAssignableFrom(event.getClass()));
-                })//过滤出参数来源于bus上的消息
+                    Class<?> aClass = subscribeMethod.getParameterTypes()[0];//得到订阅方法的参数类型Class
+                    return (aClass.isAssignableFrom(event.getClass()));//得到订阅的方法参数类型和event的类型相同的、或者具有父子关系的
+                })//过滤
                 .forEach(subscriber -> realInvokeSubscribe(subscriber, event, bus));
     }
 
@@ -83,7 +95,7 @@ public class Dispatcher {
     }
 
     /**
-     * 顺序执行的executorService
+     * 顺序执行的executorService，同步
      */
     private static class SeqExecutorService implements Executor {
 
@@ -96,7 +108,7 @@ public class Dispatcher {
     }
 
     /**
-     * 每个线程负责一次消息推送
+     * 每个线程负责一次消息推送，并发多线程
      */
     private static class PerThreadExecutorService implements Executor {
 

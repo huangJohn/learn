@@ -8,7 +8,7 @@ package concurrency.design.event_driven;
 public interface Channel<E extends Message> {
 
     /**
-     * dispatch方法用于负责Message的调度
+     * dispatch方法用于负责Message的调度，看作是Handler
      */
     void dispatch(E message);
 }
