@@ -25,5 +25,7 @@ public class Client {
         bus.post("he");
         System.out.println("------------------");
         bus.post("ww", "test");
+
+        System.out.println(Runtime.getRuntime().availableProcessors());
     }
 }
