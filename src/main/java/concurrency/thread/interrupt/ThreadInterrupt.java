@@ -1,6 +1,5 @@
 package concurrency.thread.interrupt;
 
-import sun.awt.windows.WPrinterJob;
 
 /**
  * @author zhuanghuang
