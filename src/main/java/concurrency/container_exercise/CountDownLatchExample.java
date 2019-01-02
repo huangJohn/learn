@@ -26,12 +26,16 @@ public class CountDownLatchExample {
         //3 wait and close
         /**
          * 场景
-         * 一系列串行任务，若中间有可并行的，则可latch down，然后再串行
-         * 也可借助线程池waitTermination方法结束并行后串行
-         * 注意，线程池shutdown方法是异步，仅仅只是发出线程池中正在调度的线程以中断信息，开始打断，并不是立即全部close掉
-         * */
+         * 串行任务，若到达中间某个阶段有可并行的小任务，则可起多线程并行执行，子线程执行完成后计数器latch减1，
+         * 主线程block住，所有子线程任务完成计数减至0后，再串行执行任务
+         */
         LATCH.await();
         System.out.println("all of work finished");
+
+        /**
+         * 也可借助线程池waitTermination方法结束并行后串行
+         * 注意，线程池shutdown方法是异步，仅仅只是发出线程池中正在调度的线程以中断信息，开始打断，并不是立即全部close掉
+         */
         executorService.shutdown();
     }
 
