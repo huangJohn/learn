@@ -30,6 +30,12 @@ public class CountDownLatchExample3 {
 
         }).start();
 
+        /**
+         * Description:await(2, TimeUnit.SECONDS)被中断或者超时后立即返回
+         *
+         * @param
+         * @return
+         */
         countDownLatch.await(2, TimeUnit.SECONDS);
         System.out.println("=============");
         countDownLatch.countDown();
