@@ -19,13 +19,15 @@ public class CountDownLatchExample4 {
 
     /**
      * 场景:
-     * 数据同步下，一台机器上有多个tables需要采集到另外的机器上，每次消息传递使用event驱动，
-     * 才源机器上采集是并发执行，不是对应到目的机器上table的关系，而到目的机器上假设需要核实2个值，分别是recordCount和对应row填充，
-     * 采集过程中目的机器可能有多个，数据到达时并不是串行，一个一个更新，再确认对比总数，
-     * 而是拆分每个table的任务为任务1，同步recordCount，任务2同步每row，则此时
-     * 一个table既要核实count又是核实每row数据，则可以用latch down做，同时，一个table更新完后，
+     * 数据同步下，从上游多个机器上，包括mysql、oracle等数据库有多个tables需要采集到另外的机器上，每次同步使用event请求驱动，
+     * 源机器上采集是并发执行，不具备目的机器上table的关系，游离态，
+     * 例如，100个tables，每个tables 4个数据，并发执行则需400个任务，
+     * 而到目的机器上假设需要核实2个值，分别是recordCount和对应row填充，每到目的机器上，
+     * 而拆分每个table的一行数据任务为任务1，记录其中一个字段，任务2记录另外一个字段，则此时
+     * 一个table既要核实count又是核实每row数据，则可以用latch down做，同时，一个table的一行row都到达后计数停止，
+     * 触发sql更新完后，
      * 这一event上的多个table也可以用latch down，都做完后则一个event更新处理完毕
-     * 对此，用户可以方便知道一次批处理多个table中有多少是成功的
+     * 对此，用户也可以方便知道一次批处理多个table中有多少是成功的
      *
      * @param
      * @return
@@ -54,6 +56,11 @@ public class CountDownLatchExample4 {
         }
 
         service.shutdown();
+        try {
+            service.awaitTermination(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static class TrustSourceColumns implements Runnable {
@@ -113,6 +120,7 @@ public class CountDownLatchExample4 {
     }
 
     private static class Event {
+
         private final int id;
 
         private Event(int id) {
@@ -145,9 +153,16 @@ public class CountDownLatchExample4 {
     }
 
     interface Watcher {
+
         void done(Table table);
     }
 
+    /**
+     * Description:处理一个table中的一行row都到达target
+     *
+     * @param
+     * @return
+     */
     private static class TaskBatch implements Watcher {
 
         private CountDownLatch countDownLatch;
@@ -168,6 +183,12 @@ public class CountDownLatchExample4 {
         }
     }
 
+    /**
+     * Description:处理一批event请求的tables
+     *
+     * @param
+     * @return
+     */
     private static class TaskGroup implements Watcher {
 
         private CountDownLatch countDownLatch;

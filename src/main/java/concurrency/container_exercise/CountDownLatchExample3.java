@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class CountDownLatchExample3 {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         CountDownLatch countDownLatch = new CountDownLatch(1);
 
@@ -20,13 +20,16 @@ public class CountDownLatchExample3 {
         new Thread(() -> {
 
             try {
-                TimeUnit.SECONDS.sleep(10);
+                TimeUnit.SECONDS.sleep(3);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            countDownLatch.countDown();
-//            mainThread.interrupt();
+//            countDownLatch.countDown();
+            //如果子线程中始终执行不到countDown方法，则需要在外部中断
+            //外部主线程是main线程调用await方法，因此在子线程中可尝试中断
+            mainThread.interrupt();
+
 
         }).start();
 
@@ -36,7 +39,11 @@ public class CountDownLatchExample3 {
          * @param
          * @return
          */
-        countDownLatch.await(2, TimeUnit.SECONDS);
+        try {
+            countDownLatch.await(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+//            e.printStackTrace();
+        }
         System.out.println("=============");
         countDownLatch.countDown();
 
