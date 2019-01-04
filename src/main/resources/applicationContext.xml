@@ -232,7 +232,7 @@
     <!-- 定义异常处理器 -->
     <bean id="exceptionResolver" class="com.example.interceptor.GlobalExceptionInterceptor"/>
 
-    <bean id="javaCoder" class="design_pattern.dynamic_proxy.cglib.JavaCoder">
+    <bean id="javaCoder" class="design_pattern_test.dynamic_proxy.cglib.JavaCoder">
         <property name="name" value="zhuang"/>
     </bean>
 
