@@ -1,0 +1,4 @@
+dubbo=dubbotest.adaptive_test.impl.DubboAdaptiveExt2
+cloud=dubbotest.adaptive_test.impl.SpringCloudAdaptiveExt2
+thrift=dubbotest.adaptive_test.impl.ThriftAdaptiveExt2
+
