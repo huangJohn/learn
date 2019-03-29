@@ -5,7 +5,7 @@ import com.alibaba.dubbo.common.extension.Adaptive;
 import com.alibaba.dubbo.common.extension.SPI;
 
 /**
- * Description:
+ * Description:@Adaptive 基本上所有类型的动态导入都是使用adaptive,使用范围极广。
  * <p>
  * Author: zhuanghuang
  * Date: 2019-03-27
