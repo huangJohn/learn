@@ -27,17 +27,17 @@ public class Test {
 
         AdaptiveExt2 adaptiveExtension = extensionLoader.getAdaptiveExtension();
 
-        URL url = URL.valueOf("test://localhost/test");//寻找默认实现
+        URL url = URL.valueOf("test://localhost/test");//类没有被注解adaptive，方法被注解，没有指定key，则尝试在url上寻找key，其实是没有，于是找到默认dubbo实现
 
         System.out.println(adaptiveExtension.echo(url, "d"));
 
-        URL url2 = URL.valueOf("test://localhost/test?adaptive.ext2=cloud");//方法被注解修饰了，没传key，默认使用camelToSplitName算法获取key，从url上找到对应key，获取spi标签找到实现
+        URL url2 = URL.valueOf("test://localhost/test?adaptive.ext2=cloud");//类没被注解，方法被注解修饰了，没传key，默认使用camelToSplitName算法获取key，从url上找到对应key，获取spi标签找到实现
         System.out.println(adaptiveExtension.echo(url2, "d"));
 
-        URL url3 = URL.valueOf("test://localhost/test?adaptive.ext2=cloud");//类如果被adaptive修饰了，直接获取实现,不管url显示传key了
+        URL url3 = URL.valueOf("test://localhost/test?adaptive.ext2=cloud");//倘如类如果被adaptive修饰了，直接获取实现,不管url显示传key了
         System.out.println(adaptiveExtension.echo(url3, "d"));
 
-        URL url4 = URL.valueOf("test://localhost/test?t=cloud");//方法注解穿了key
+        URL url4 = URL.valueOf("test://localhost/test?t=cloud");//类没被注解，方法注解穿了key，且被指定list顺序keys，url上找到则获取对应实现，没有则默认
         System.out.println(adaptiveExtension.echo(url4, "d"));
 
 

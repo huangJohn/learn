@@ -10,7 +10,7 @@ import dubbotest.adaptive_test.AdaptiveExt2;
  * Author: zhuanghuang
  * Date: 2019-03-27
  */
-@Adaptive
+//@Adaptive
 public class ThriftAdaptiveExt2 implements AdaptiveExt2 {
 
     @Override
