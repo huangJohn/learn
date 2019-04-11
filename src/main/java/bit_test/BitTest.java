@@ -71,6 +71,9 @@ public class BitTest {
         //左移，******低位补0
         System.out.println(-5 << 3);
 
+        System.out.println(5 ^ 4);//101 100 = 001 异或
+        System.out.println(5 | 4);//或 5
+        System.out.println(5 & 4);//与 4
 
 
     }
