@@ -7,7 +7,10 @@
     <groupId>com.zh</groupId>
     <artifactId>learn</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <modules>
+        <module>learn-jdk7</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>learn Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
