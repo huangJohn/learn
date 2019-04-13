@@ -1,6 +1,0 @@
-group=dubbotest.activate_test.impl.GroupActivateExtImpl
-value=dubbotest.activate_test.impl.ValueActivateExtImpl
-order1=dubbotest.activate_test.impl.OrderActivateExtImpl1
-order2=dubbotest.activate_test.impl.OrderActivateExtImpl2
-dubbotest.activate_test.impl.ActivateExt1Impl1
-

@@ -1,0 +1,4 @@
+dubbo=com.zh.learn.dubbotest.adaptive_test.impl.DubboAdaptiveExt2
+cloud=com.zh.learn.dubbotest.adaptive_test.implSpringCloudAdaptiveExt2
+thrift=com.zh.learn.dubbotest.adaptive_test.implThriftAdaptiveExt2
+

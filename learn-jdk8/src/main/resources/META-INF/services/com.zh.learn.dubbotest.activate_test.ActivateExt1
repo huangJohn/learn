@@ -1,0 +1,6 @@
+group=com.zh.learn.dubbotest.activate_test.impl.GroupActivateExtImpl
+value=com.zh.learn.dubbotest.activate_test.impl.ValueActivateExtImpl
+order1=com.zh.learn.dubbotest.activate_test.impl.OrderActivateExtImpl1
+order2=com.zh.learn.dubbotest.activate_test.impl.OrderActivateExtImpl2
+com.zh.learn.dubbotest.activate_test.impl.ActivateExt1Impl1
+
