@@ -25,3 +25,7 @@
 hs_err_pid*
 
 /.idea/
+/common-jdk7/target/
+/learn-jdk7/target/
+/common-jdk8/target/
+/learn-jdk8/target/
