@@ -1,56 +1,89 @@
 package com.zh.learn.concurrency_test.container_exercise;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
+import java.util.concurrent.*;
 import java.util.stream.IntStream;
 
-/**
- * Description:
- * <p>
- * Author: zhuanghuang
- * Date: 2019-01-13
- */
+import static java.util.stream.Collectors.toList;
+
+/***************************************
+ * @author:Alex Wang
+ * @Date:2017/9/2
+ * QQ交流群:601980517，463962286
+ ***************************************/
 public class CompletableFutureExample1 {
-
-
     public static void main(String[] args) throws InterruptedException {
 
-        IntStream.range(0, 10).boxed().forEach(i ->
-                CompletableFuture.supplyAsync(CompletableFutureExample1::get)
-                        .thenAccept(CompletableFutureExample1::display)
-                        .whenComplete((v, t) -> System.out.println(Thread.currentThread().getName() + " done.")));
+//        ExecutorService executorService = Executors.newFixedThreadPool(10);
+//
+//        Future<?> future = executorService.submit(() -> {
+//            try {
+//                TimeUnit.SECONDS.sleep(10);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        });
+//        while (!future.isDone()) {
+//
+//        }
+//        System.out.println("DONE");
 
+//        CompletableFuture.runAsync(() -> {
+//            try {
+//                TimeUnit.SECONDS.sleep(10);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }).whenComplete((v, t) -> System.out.println("DONE"));
+//        System.out.println("========i am not blocked=========");
+//        Thread.currentThread().join();
+
+//        ExecutorService executorService = Executors.newFixedThreadPool(5);
+//
+//        List<Callable<Integer>> tasks = IntStream.range(0, 5).boxed()
+//                .map(i -> (Callable<Integer>) () -> getFromDb()).collect(toList());
+//
+//        executorService.invokeAll(tasks).stream().map(future -> {
+//            try {
+//                return future.get();
+//            } catch (Exception e) {
+//                throw new RuntimeException(e);
+//            }
+//        }).parallel().forEach(i -> print(i));
+
+
+        IntStream.range(0, 5).boxed()
+                .forEach(i -> CompletableFuture.supplyAsync(CompletableFutureExample1::getFromDb)
+                        .thenAccept(CompletableFutureExample1::print)
+                        .whenComplete((v, t) -> System.out.println(i + " DONE"))
+                );
         Thread.currentThread().join();
-
     }
 
+    private static void print(int data) {
 
-    private static int get() {
-
-        int val = ThreadLocalRandom.current().nextInt(5);
-
+        int value = ThreadLocalRandom.current().nextInt(5);
         try {
-            System.out.println(Thread.currentThread().getName() + " get() start.");
-            TimeUnit.SECONDS.sleep(val);
-            System.out.println(Thread.currentThread().getName() + " get() end.");
+            System.out.println(Thread.currentThread().getName() + " print will be sleep " + value);
+            TimeUnit.SECONDS.sleep(value);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return val;
+        System.out.println(Thread.currentThread().getName() + " print execute done " + data);
     }
 
-    private static void display(int data) {
+    private static int getFromDb() {
 
-        int val = ThreadLocalRandom.current().nextInt(10);
+        int value = ThreadLocalRandom.current().nextInt(5);
 
         try {
-            System.out.println(Thread.currentThread().getName() + " display() start.");
-            TimeUnit.SECONDS.sleep(val);
-            System.out.println(Thread.currentThread().getName() + " display data = " + data);
-            System.out.println(Thread.currentThread().getName() + " display() end.");
+            System.out.println(Thread.currentThread().getName() + " getFromDb will be sleep " + value);
+            TimeUnit.SECONDS.sleep(value);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        System.out.println(Thread.currentThread().getName() + " getFromDb execute done " + value);
+        return value;
     }
 }
