@@ -29,3 +29,12 @@ hs_err_pid*
 /learn-jdk7/target/
 /common-jdk8/target/
 /learn-jdk8/target/
+/learn-jdk8/common-dependency/common-dependency.iml
+/learn-jdk8/common-dependency/target/
+/learn-jdk8/my-spring-test/my-spring-test.iml
+/learn-jdk8/my-java-learn/my-java-learn.iml
+/learn-jdk8/my-algs-learn/my-algs-learn.iml
+/learn-jdk8/my-spring-test/target/
+/learn-jdk8/my-java-learn/target/
+/learn-jdk8/my-concurrency-learn/target/
+/learn-jdk8/my-algs-learn/target/
