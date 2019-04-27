@@ -38,3 +38,5 @@ hs_err_pid*
 /learn-jdk8/my-java-learn/target/
 /learn-jdk8/my-concurrency-learn/target/
 /learn-jdk8/my-algs-learn/target/
+/learn-jdk8/my-java-test/target/
+/logs/
