@@ -3,6 +3,6 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="messageService" class="com.zh.learn.serviceimpl.MessageServiceImpl"/>
+    <bean id="myTestBean" class="bean_test.bean.MyTestBean"/>
 
 </beans>
