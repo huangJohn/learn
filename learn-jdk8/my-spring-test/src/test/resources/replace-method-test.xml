@@ -3,11 +3,11 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="myTestBean" class="bean_test.bean.start_container.MyTestBean"/>
-
-    <bean id="car" class="bean_test.bean.factory_bean_test.CarFactoryBean">
-        <property name="carInfo" value="超级跑车,400,2000000000"/>
+    <bean id="testChangeMethod" class="bean_test.bean.replace_method_bean.TestChangeMethod">
+        <replaced-method name="changeMe" replacer="replacer"/>
     </bean>
+
+    <bean id="replacer" class="bean_test.bean.replace_method_bean.TestChangeMethodReplacer"/>
 
 
 </beans>

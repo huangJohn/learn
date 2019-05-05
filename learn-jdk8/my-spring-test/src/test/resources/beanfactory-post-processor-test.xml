@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- spring ioc部分 start -->
+    <bean id ="myBeanFactoryPostProcessorTestBean" class= "bean_test.bean.beanfactory_post_processor_bean_test.MyBeanFactoryPostProcessorTestBean" >
+        <property name="name" value="net"/>
+    </bean>
+
+    <bean id="myCustomizedBeanFactoryPostProcessor" class="bean_test.bean.beanfactory_post_processor_bean_test.MyCustomizedBeanFactoryPostProcessor"/>
+
+    <bean id="myCustomizedBeanDefinitionRegistryPostProcessor" class="bean_test.bean.bean_definition_registry_post_processor_bean_test.MyCustomizedBeanDefinitionRegistryPostProcessor"/>
+
+    <!-- spring ioc部分 end -->
+
+
+</beans>

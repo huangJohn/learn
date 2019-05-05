@@ -1,4 +1,4 @@
-package bean_test.bean;
+package bean_test.bean.start_container;
 
 /**
  * Description:
