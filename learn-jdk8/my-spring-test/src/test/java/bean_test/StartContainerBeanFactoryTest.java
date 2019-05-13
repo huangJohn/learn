@@ -5,7 +5,6 @@ import bean_test.bean.factory_bean_test.CarFactoryBean;
 import bean_test.bean.start_container.MyTestBean;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
