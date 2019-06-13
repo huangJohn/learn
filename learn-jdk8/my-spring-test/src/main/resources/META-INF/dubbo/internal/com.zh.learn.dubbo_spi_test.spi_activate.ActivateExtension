@@ -1,0 +1,5 @@
+value=com.zh.learn.dubbo_spi_test.spi_activate.impl.ValueGroupActivateExtension
+group=com.zh.learn.dubbo_spi_test.spi_activate.impl.SetGroupActivateExtensionImpl
+com.zh.learn.dubbo_spi_test.spi_activate.impl.DefaultGroupActivateExtensionImpl
+order1=com.zh.learn.dubbo_spi_test.spi_activate.impl.OrderGroup1ActivateExtensionImpl
+order2=com.zh.learn.dubbo_spi_test.spi_activate.impl.OrderGroup2ActivateExtensionImpl

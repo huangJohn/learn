@@ -1,0 +1,3 @@
+dubbo=com.zh.learn.dubbo_spi_test.spi_adaptive.impl.DubboAdaptiveExtensionImpl
+springcloud=com.zh.learn.dubbo_spi_test.spi_adaptive.impl.SpringCloudAdaptiveExtensionImpl
+thrift=com.zh.learn.dubbo_spi_test.spi_adaptive.impl.ThriftAdaptiveExtensionImpl
