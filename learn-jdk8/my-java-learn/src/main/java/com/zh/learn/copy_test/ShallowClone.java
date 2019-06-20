@@ -52,6 +52,7 @@ public class ShallowClone implements Cloneable {
         }
         return clone;
     }
+
     public static void main(String[] args) {
 
         ShallowClone shallowClone = new ShallowClone();
@@ -77,10 +78,6 @@ public class ShallowClone implements Cloneable {
         System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
         System.out.println("==================");
 
-        shallowClone.setBooks(Arrays.asList("hello"));
-        System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
-        System.out.println("==================");
-
         cloneObj.setName("xxxxxxx123");
         System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
         System.out.println("==================");
@@ -89,7 +86,19 @@ public class ShallowClone implements Cloneable {
         System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
         System.out.println("==================");
 
+        /**
+         * Description:
+         * 原对象的list对象已经被指向另外一个地址
+         * 所以浅拷贝的对象和原来对象已经不是同一个引用
+         */
         cloneObj.setBooks(Arrays.asList("asdsa"));
+        System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
+        System.out.println("==================");
+
+        /**
+         * Description:同上
+         */
+        shallowClone.setBooks(Arrays.asList("hello"));
         System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
         System.out.println("==================");
 
