@@ -26,7 +26,7 @@ public class ValueTest {
         String name = "zhuang";
         System.out.println("in main, before, name=" + name);
         pass(name);
-        System.out.println("in mian, after, name="+name);
+        System.out.println("in main, after, name="+name);
         System.out.println("-------------------------");
 
         System.out.println("in main, before, user = "+user.toString());
