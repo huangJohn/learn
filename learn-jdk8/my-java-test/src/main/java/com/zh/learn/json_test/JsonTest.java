@@ -21,6 +21,9 @@ public class JsonTest {
         System.out.println(parse.toString());
 
         System.out.println();
+
+        System.out.println(1<<13);
+        System.out.println(1 << 26);
     }
 
 }
