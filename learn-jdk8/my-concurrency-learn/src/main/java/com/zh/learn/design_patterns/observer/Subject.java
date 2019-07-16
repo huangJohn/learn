@@ -1,7 +1,5 @@
 package com.zh.learn.design_patterns.observer;
 
-import com.zh.learn.design_patterns.thread_observable.Observable;
-
 import java.util.ArrayList;
 import java.util.List;
 
