@@ -1,5 +1,6 @@
 package com.zh.learn.lambda_test;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -21,6 +22,13 @@ public class LambdaTest {
             }
         });
 
+        Stream<String> stream2 = Stream.of("abc", "def");
+        Optional<String> first = stream2.findFirst();
+        first.ifPresent(System.out::println);
+
+        Stream<String> stream3 = Stream.of("abc", "def", "xyz");
+        stream3.filter(s -> s.startsWith("de"))
+                .forEach(System.out::println);
 
     }
 

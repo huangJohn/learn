@@ -21,7 +21,9 @@ public class Log4jConfigTest {
         logger.warn( " this is {} warn log", Log4jConfigTest.class.getName() );
         logger.error( " this is {} error log", Log4jConfigTest.class.getName());
 
-
+        /**
+         * Description:include这个包路径 warn以上
+         */
     }
 
 }
