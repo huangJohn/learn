@@ -1,5 +1,10 @@
 package com.zh.learn.basic_test;
 
+import org.springframework.util.CollectionUtils;
+
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Description:
  * <p>
@@ -17,6 +22,18 @@ public class BasicTest {
         System.out.println(split.length);
 
         System.out.println(split[6]);
+
+        List<Object> objects = Collections.singletonList(null);
+        System.out.println(objects);
+        objects.forEach(o->{
+            System.out.println(o);
+        });
+
+        boolean empty = CollectionUtils.isEmpty(objects);
+        System.out.println(empty);
+
+        System.out.println(2<<19);
+
     }
 
 }
