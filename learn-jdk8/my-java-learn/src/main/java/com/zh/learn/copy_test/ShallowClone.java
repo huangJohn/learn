@@ -66,7 +66,7 @@ public class ShallowClone implements Cloneable {
         ShallowClone cloneObj = shallowClone.clone();
 
         // 判断两个对象是否为同一个对象（即是否是新创建了一个实例）
-        System.out.println(cloneObj == shallowClone);
+        System.out.println(cloneObj == shallowClone);//false
         System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
         System.out.println("==================");
 
@@ -75,14 +75,14 @@ public class ShallowClone implements Cloneable {
         shallowClone.setAge(20);
         shallowClone.getBooks().add("c");
 
+        System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());//影响浅拷贝的
+        System.out.println("==================");
+
+        cloneObj.setName("xxxxxxx123");//不影响原来的
         System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
         System.out.println("==================");
 
-        cloneObj.setName("xxxxxxx123");
-        System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
-        System.out.println("==================");
-
-        cloneObj.getBooks().add("sadasdsadasxxx");
+        cloneObj.getBooks().add("sadasdsadasxxx");//引用指向原来
         System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
         System.out.println("==================");
 
@@ -91,7 +91,7 @@ public class ShallowClone implements Cloneable {
          * 原对象的list对象已经被指向另外一个地址
          * 所以浅拷贝的对象和原来对象已经不是同一个引用
          */
-        cloneObj.setBooks(Arrays.asList("asdsa"));
+        cloneObj.setBooks(Arrays.asList("asdsa"));//新的地址
         System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
         System.out.println("==================");
 

@@ -41,7 +41,11 @@ public class ClientHandler implements Runnable {
                 client.close();
             }
         } catch (IOException e) {
-            //
+            //socket关闭释放仍然可能不成功
+            //二阶段利用PhantomReference特性再关闭一次，增加成功概率
+            if (this.client != null) {
+                SocketCleaningTracker.tracker(client);
+            }
         }
     }
 
