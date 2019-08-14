@@ -14,6 +14,9 @@ public class Production extends InstructionBook {
         this.productId = productId;
     }
 
+    public int getProductId() {
+        return productId;
+    }
 
     @Override
     public void firstProcess() {

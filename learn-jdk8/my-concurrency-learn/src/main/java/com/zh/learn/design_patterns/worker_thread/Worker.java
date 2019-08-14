@@ -25,14 +25,14 @@ public class Worker extends Thread {
 
         while (true) {
             Production production = productionChannel.takeProduction();
-            System.out.println(getName() + " process the " + production);
+            System.out.println(getName() + " process the production id = " + production.getProductId());
             production.create();
             try {
                 TimeUnit.SECONDS.sleep(RANDOM.nextInt(10));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            System.out.println(getName() + " process the production id = " + production.getProductId() + " done");
         }
     }
 }

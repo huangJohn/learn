@@ -12,17 +12,17 @@ public class Client {
 
     public static void main(String[] args) throws InterruptedException {
 
-        FutureService futureService = new FutureService();
+        FutureService<Void, Void> futureService = FutureService.newService();
 
-        Future<String> future = futureService.submit(
+        Future<?> future = futureService.submit(
                 () -> {
                     try {
                         TimeUnit.MILLISECONDS.sleep(10_000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    return "123";
-                }, System.out::println
+                    System.out.println("i am runnable and finish done");
+                }
         );//asyn 10s
 
         System.out.println("do other 1....");
@@ -35,8 +35,29 @@ public class Client {
         }
         System.out.println("do other 3....");
 
-//        String s = future.get();
-//        System.out.println(s);
+        //阻塞
+        Object s = future.get();
+        System.out.println(s);
+
+        FutureService<String, Integer> futureService1 = FutureService.newService();
+        Future<Integer> future1 = futureService1.submit(input -> {
+            try {
+                TimeUnit.SECONDS.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return input.length();
+        }, "hello");
+        System.out.println(future1.get());
+
+        Future<Integer> future2 = futureService1.submit(input -> {
+            try {
+                TimeUnit.SECONDS.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return input.length();
+        }, "hello", System.out::println);
 
     }
 
