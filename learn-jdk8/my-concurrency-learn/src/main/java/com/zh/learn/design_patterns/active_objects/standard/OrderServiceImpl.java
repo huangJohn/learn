@@ -1,5 +1,6 @@
 package com.zh.learn.design_patterns.active_objects.standard;
 
+import com.zh.learn.design_patterns.active_objects.generic.ActiveMethod;
 import com.zh.learn.design_patterns.future.Future;
 import com.zh.learn.design_patterns.future.FutureService;
 
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public class OrderServiceImpl implements OrderService {
 
+    @ActiveMethod
     @Override
     public Future<String> findOrderDetails(long orderId) {
 
@@ -27,6 +29,7 @@ public class OrderServiceImpl implements OrderService {
         }, orderId, null);
     }
 
+    @ActiveMethod
     @Override
     public void order(String account, long orderId) {
 
