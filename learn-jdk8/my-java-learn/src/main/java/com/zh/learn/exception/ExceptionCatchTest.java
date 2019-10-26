@@ -13,11 +13,11 @@ public class ExceptionCatchTest {
         ExceptionCatchTest exceptionCatchTest = new ExceptionCatchTest();
 
         try {
-            exceptionCatchTest.doSomething(3);
+            exceptionCatchTest.doSomething(-1);
         } catch (MyRpcException e) {
             System.out.println("MyRpcException");
         } catch (RuntimeException e) {
-            System.out.println("RuntimeException");
+            System.out.println("RuntimeException===" + e.getClass());
         } catch (Exception e) {
             System.out.println("Exception");
         } catch (Throwable t) {
