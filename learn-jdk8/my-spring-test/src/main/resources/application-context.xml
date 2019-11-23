@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
@@ -9,5 +10,12 @@
     <bean id="testBean" class="com.zh.learn.aop.simple.TestBean"/>
     <bean id="aspectJTest" class="com.zh.learn.aop.simple.AspectJTest"/>
 
+    <bean id="controllablePerformanceMonitor" class="com.zh.learn.aop.introduction.ControllablePerformanceMonitor"/>
+    <bean id="forumServiceTarget" class="com.zh.learn.aop.introduction.ForumService"/>
 
+    <bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interfaces="com.zh.learn.aop.introduction.Monitorable"
+          p:target-ref="forumServiceTarget"
+          p:interceptorNames="controllablePerformanceMonitor"
+          p:proxyTargetClass="true"/>
 </beans>
