@@ -2,6 +2,7 @@ package com.zh.learn.json_test;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -83,6 +84,11 @@ public class JsonTest {
 
         User user1 = JSONObject.parseObject(s1, User.class);
         System.out.println(user1.getName() + "=" + user1.getVlaue());
+
+        String s3 = null;
+
+        boolean blank = StringUtils.isBlank(s3);
+        System.out.println(blank);
 
 
     }
