@@ -41,3 +41,11 @@ hs_err_pid*
 /learn-jdk8/my-java-test/target/
 /logs/
 /learn-jdk8/my-spring-test/logs/
+
+/common-jdk7/common-jdk7.iml
+/common-jdk8/common-jdk8.iml
+/learn-jdk7/learn-jdk7.iml
+/learn-jdk8/learn-jdk8.iml
+/learn-jdk8/my-concurrency-learn/my-concurrency-learn.iml
+/learn-jdk8/my-java-test/my-java-test.iml
+/learn.iml
