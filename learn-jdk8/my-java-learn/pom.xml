@@ -11,8 +11,8 @@
 
     <artifactId>my-java-learn</artifactId>
     <packaging>war</packaging>
-    <name>${artifactId}</name>
-    <version>${parent.version}</version>
+    <name>${project.artifactId}</name>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

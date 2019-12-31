@@ -8,7 +8,7 @@
     <artifactId>learn</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>${artifactId}</name>
+    <name>${project.artifactId}</name>
 
     <modules>
         <module>common-jdk7</module>
