@@ -18,10 +18,17 @@
     </modules>
 
     <repositories>
+
         <repository>
-            <id>nexus-aliyun</id>
-            <name>Nexus aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+
+        <repository>
+            <id>nexus-public-snapshots</id>
+            <name>aliyun-nexus-public-snapshots</name>
+            <url>http://maven.aliyun.com/nexus/content/repositories/snapshots/</url>
         </repository>
 
         <repository>
