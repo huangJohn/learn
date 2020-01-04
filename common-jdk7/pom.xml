@@ -28,6 +28,13 @@
             <artifactId>dubbo</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+        </dependency>
+
+
         <!--apache commons collections-->
         <dependency>
             <groupId>org.apache.commons</groupId>

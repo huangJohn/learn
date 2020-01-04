@@ -137,6 +137,14 @@
                 <version>2.1</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>1.9.4</version>
+            </dependency>
+
+
             <!--spring framework-->
             <dependency>
                 <groupId>org.springframework</groupId>
