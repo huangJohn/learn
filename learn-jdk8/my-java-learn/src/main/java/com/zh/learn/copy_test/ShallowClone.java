@@ -19,19 +19,19 @@ import java.util.List;
 @ToString
 public class ShallowClone implements Cloneable {
 
+    //引用
     private String name;
+    //基本类型
     private int age;
+    //引用
     private List<String> books;
 
-    /**
-     * Description:
-     * 一般来说，浅拷贝方式需要实现Cloneable接口
-     */
     @Override
     public ShallowClone clone() {
 
         ShallowClone shallowClone = null;
         try {
+            //浅拷贝
             shallowClone = (ShallowClone) super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
@@ -45,6 +45,7 @@ public class ShallowClone implements Cloneable {
      */
     public ShallowClone deepClone() {
         ShallowClone clone = new ShallowClone();
+        //对source每一个属性赋值
         clone.name = this.name;
         clone.age = this.age;
         if (this.books != null) {
@@ -63,26 +64,30 @@ public class ShallowClone implements Cloneable {
         list.add("b");
         shallowClone.setBooks(list);
 
+        //浅
         ShallowClone cloneObj = shallowClone.clone();
 
+        System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
+        System.out.println("==================");
+
         // 判断两个对象是否为同一个对象（即是否是新创建了一个实例）
-        System.out.println(cloneObj == shallowClone);//false
+        System.out.println(cloneObj == shallowClone ? "同一个引用" : "非同一个引用");//false
+        System.out.println("===================");
+
+        // 修改一个对象的内容是否会影响另一个对象 ?
+        shallowClone.setName("newName123");//no，string是复制的引用，jvm中是常量池，受字符串驻留机制，不会对原来的值造成影响
+        shallowClone.setAge(20);//no
+        shallowClone.getBooks().add("c");//yes
+
+        System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());//source 影响浅拷贝的 list引用obj
+        System.out.println("==================");
+
+        cloneObj.setName("xxxxxxx123");//no
+        cloneObj.setAge(99);
         System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
         System.out.println("==================");
 
-        // 修改一个对象的内容是否会影响另一个对象
-        shallowClone.setName("newName123");
-        shallowClone.setAge(20);
-        shallowClone.getBooks().add("c");
-
-        System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());//影响浅拷贝的
-        System.out.println("==================");
-
-        cloneObj.setName("xxxxxxx123");//不影响原来的
-        System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
-        System.out.println("==================");
-
-        cloneObj.getBooks().add("sadasdsadasxxx");//引用指向原来
+        cloneObj.getBooks().add("sadasdsadasxxx");//引用指向原来,yes
         System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
         System.out.println("==================");
 
@@ -91,7 +96,7 @@ public class ShallowClone implements Cloneable {
          * 原对象的list对象已经被指向另外一个地址
          * 所以浅拷贝的对象和原来对象已经不是同一个引用
          */
-        cloneObj.setBooks(Arrays.asList("asdsa"));//新的地址
+        cloneObj.setBooks(Arrays.asList("asdsa"));//新的地址，深拷贝了,不改变source
         System.out.println("source: " + shallowClone.toString() + "\nclone: " + cloneObj.toString());
         System.out.println("==================");
 
@@ -107,9 +112,9 @@ public class ShallowClone implements Cloneable {
          * 结果分析：
          *
          * 拷贝后获取的是一个独立的对象，和原对象拥有不同的内存地址
-         * 基本元素类型，两者是隔离的（虽然上面只给出了int，String）
+         * 基本元素类型，两者是隔离的（虽然上面只给出了int）
          * 基本元素类型包括:
-         * int, Integer, long, Long, char, Charset, byte,Byte, boolean, Boolean, float,Float, double, Double, String
+         * int, Integer, long, Long, char, Charset, byte,Byte, boolean, Boolean, float,Float, double, Double
          * 非基本数据类型（如基本容器，其他对象等），只是拷贝了一份引用出去了，实际指向的依然是同一份
          * 其实，浅拷贝有个非常简单的理解方式：
          *
@@ -122,7 +127,7 @@ public class ShallowClone implements Cloneable {
          *
          * 基本数据类型是值赋值；非基本的就是引用赋值
          *
-         * 浅拷贝出来的对象修改属性不能影响原对象
+         * 浅拷贝出来的对象修改值属性不能影响原对象
          */
 
         System.out.println("------------深复制测试---------");
@@ -138,7 +143,7 @@ public class ShallowClone implements Cloneable {
         ShallowClone cloneObj2 = shallowClone2.deepClone();
 
         // 判断两个对象是否为同一个对象（即是否是新创建了一个实例）
-        System.out.println(shallowClone2 == cloneObj2);
+        System.out.println(shallowClone2 == cloneObj2);//false
         System.out.println("source: " + shallowClone2.toString() + "\nclone:" + cloneObj2.toString());
         System.out.println("=================");
 
@@ -146,9 +151,11 @@ public class ShallowClone implements Cloneable {
         shallowClone2.setName("newName");
         shallowClone2.setAge(2000);
         shallowClone2.getBooks().add("javascript");
+        //no
         System.out.println("source: " + shallowClone2.toString() + "\nclone:" + cloneObj2.toString());
         System.out.println("=================");
 
+        //no
         shallowClone2.setBooks(Arrays.asList("hello"));
         System.out.println("source: " + shallowClone2.toString() + "\nclone:" + cloneObj2.toString());
         System.out.println("=================");
