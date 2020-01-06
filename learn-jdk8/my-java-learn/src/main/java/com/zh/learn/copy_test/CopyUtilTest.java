@@ -11,7 +11,7 @@ import java.util.Date;
  * Author: zhuanghuang
  * Date: 2020/1/3
  */
-public class CopyUtils {
+public class CopyUtilTest {
 
     public static void main(String[] args) {
 
