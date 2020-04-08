@@ -53,6 +53,7 @@ public class MapCopyTest {
         ((User) clone.get(4)).setPerson(person2);
 
         System.out.println(clone);
+        System.out.println(hashMap);
     }
 
 }
