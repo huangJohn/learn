@@ -22,25 +22,25 @@
         <repository>
             <id>aliyun</id>
             <name>aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
         </repository>
 
         <repository>
             <id>nexus-public-snapshots</id>
             <name>aliyun-nexus-public-snapshots</name>
-            <url>http://maven.aliyun.com/nexus/content/repositories/snapshots/</url>
+            <url>https://maven.aliyun.com/nexus/content/repositories/snapshots/</url>
         </repository>
 
         <repository>
             <id>repo1</id>
             <name>repo1</name>
-            <url>http://repo1.maven.org/maven2/</url>
+            <url>https://repo1.maven.org/maven2/</url>
         </repository>
 
         <repository>
             <id>repo2</id>
             <name>repo2</name>
-            <url>http://repo2.maven.org/maven2/</url>
+            <url>https://repo2.maven.org/maven2/</url>
         </repository>
 
 
