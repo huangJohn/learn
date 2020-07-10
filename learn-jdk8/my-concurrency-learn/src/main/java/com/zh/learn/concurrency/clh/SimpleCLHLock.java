@@ -1,4 +1,4 @@
-package com.zh.learn.concurrency.utils.clh;
+package com.zh.learn.concurrency.clh;
 
 import java.util.concurrent.atomic.AtomicReference;
 
