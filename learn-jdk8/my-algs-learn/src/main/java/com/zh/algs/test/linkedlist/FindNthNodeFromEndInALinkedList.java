@@ -8,6 +8,11 @@ package com.zh.algs.test.linkedlist;
  */
 public class FindNthNodeFromEndInALinkedList {
 
+    /**
+     * Description:
+     * 也可以用双快慢指针实现
+     */
+
     private Node head;
 
     public static void main(String[] args) {

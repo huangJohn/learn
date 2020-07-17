@@ -41,6 +41,48 @@ public class ListNodeUtil {
         return node;
     }
 
+    public static Node createHeadByAppend4Palindrome() {
+        Node node = new Node(1);
+        node = append(node, 2);
+        node = append(node, 3);
+        node = append(node, 4);
+        node = append(node, 3);
+        node = append(node, 2);
+        node = append(node, 1);
+        return node;
+    }
+
+    public static Node createHeadByAppend4Palindrome2() {
+        Node node = new Node(1);
+        node = append(node, 2);
+        node = append(node, 3);
+        node = append(node, 3);
+        node = append(node, 2);
+        node = append(node, 1);
+        return node;
+    }
+
+
+    public static Node createCircle() {
+
+        Node node = new Node(1);
+        node = append(node, 2);
+        node = append(node, 3);
+        node = append(node, 4);
+        node = append(node, 5);
+        node = append(node, 6);
+        node = append(node, 7);
+
+        Node last = node;
+        while (last.next != null) {
+            last = last.next;
+        }
+
+        last.next = node.next.next;
+
+        return node;
+    }
+
     public static Node createHeadByPush() {
         Node node = new Node(1);
         node = push(node, 2);
