@@ -1,4 +1,7 @@
-package com.zh.algs.test.linkedlist;
+package com.zh.algs.ds.exercise.linkedlist;
+
+import com.zh.algs.ds.linkedlist.ListNodeUtil;
+import com.zh.algs.ds.linkedlist.Node;
 
 /**
  * Description:
@@ -8,8 +11,8 @@ package com.zh.algs.test.linkedlist;
  */
 public class FindLengthOfLinkedList {
 
-
     private Node head;
+
 
     public static void main(String[] args) {
 
@@ -19,41 +22,40 @@ public class FindLengthOfLinkedList {
         test.head = ListNodeUtil.push(test.head, 2);
         test.head = ListNodeUtil.push(test.head, 3);
         test.head = ListNodeUtil.push(test.head, 4);
+        test.head = ListNodeUtil.push(test.head, 5);
 
         ListNodeUtil.print(test.head);
 
-        System.out.println(test.findLength());
-        System.out.println(test.findLengthByRecursive());
-
-
+        System.out.println(test.findByIter());
+        System.out.println(test.findByRecur());
 
     }
 
-    public int findLengthByRecursive() {
-        return findRecur(head);
+    public int findByRecur() {
+        return findByRecurInner(head);
     }
 
-    private int findRecur(Node node) {
-        if (node == null) {
+    private int findByRecurInner(Node head) {
+
+        if (head == null) {
             return 0;
         }
-        return 1 + findRecur(node.next);
+        return 1 + findByRecurInner(head.next);
     }
 
 
-    public int findLength() {
+    public int findByIter() {
 
         int count = 0;
 
-        Node t = head;
+        Node tmp = head;
 
-        while (t != null) {
+        while (tmp != null) {
             count++;
-            t = t.next;
+            tmp = tmp.next;
         }
 
         return count;
-
     }
 
 }

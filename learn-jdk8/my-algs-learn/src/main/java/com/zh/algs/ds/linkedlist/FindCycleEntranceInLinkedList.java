@@ -1,4 +1,4 @@
-package com.zh.algs.test.linkedlist;
+package com.zh.algs.ds.linkedlist;
 
 /**
  * Description:
@@ -6,13 +6,13 @@ package com.zh.algs.test.linkedlist;
  * Author: zhuanghuang
  * Date: 2020/7/16
  */
-public class FindCycleLengthInLinkedList {
+public class FindCycleEntranceInLinkedList {
 
     private Node head;
 
     public static void main(String[] args) {
 
-        FindCycleLengthInLinkedList test = new FindCycleLengthInLinkedList();
+        FindCycleEntranceInLinkedList test = new FindCycleEntranceInLinkedList();
         test.head = ListNodeUtil.createHeadByAppend();
 
         Node tmp = test.head;
@@ -21,39 +21,40 @@ public class FindCycleLengthInLinkedList {
             tmp = tmp.next;
         }
 
-        tmp.next = test.head.next;
+        tmp.next = test.head.next.next;
 
-        System.out.println(test.getCycleLength());
+        System.out.println(test.findCycleEntrance());
 
     }
 
-    public int getCycleLength() {
+    public int findCycleEntrance() {
 
         Node slow = head, fast = head;
 
         while (slow != null && fast != null && fast.next != null) {
+
             slow = slow.next;
             fast = fast.next.next;
 
             if (slow == fast) {
-                return getLength(slow);
+                break;
             }
         }
-        return -1;
-    }
 
-    private int getLength(Node slow) {
-
-        int count = 1;
-        Node tmp = slow;
-
-        while (tmp.next != slow) {
-            tmp = tmp.next;
-            count++;
+        if (slow != fast) {
+            return -1;
         }
 
-        return count;
-    }
+        slow = head;
 
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        return slow.data;
+
+
+    }
 
 }

@@ -1,6 +1,4 @@
-package com.zh.algs.test.linkedlist;
-
-import static com.zh.algs.test.linkedlist.ListNodeUtil.*;
+package com.zh.algs.ds.linkedlist;
 
 /**
  * Description:
@@ -11,18 +9,18 @@ import static com.zh.algs.test.linkedlist.ListNodeUtil.*;
 public class FindMiddleNodeOfLinkedList {
 
 
-    private Node head = createHeadByAppend();
+    private Node head = ListNodeUtil.createHeadByAppend();
 
 
     public static void main(String[] args) {
 
         FindMiddleNodeOfLinkedList test = new FindMiddleNodeOfLinkedList();
-        print(test.head);
+        ListNodeUtil.print(test.head);
 
         System.out.println(test.findMiddleNode());
 
-        test.head = createHeadByAppend2();
-        print(test.head);
+        test.head = ListNodeUtil.createHeadByAppend2();
+        ListNodeUtil.print(test.head);
 
         System.out.println(test.findMiddleNode());
 

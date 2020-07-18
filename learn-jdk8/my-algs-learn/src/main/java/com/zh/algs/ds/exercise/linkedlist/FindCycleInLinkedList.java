@@ -1,7 +1,7 @@
-package com.zh.algs.linkedlist.exercise;
+package com.zh.algs.ds.exercise.linkedlist;
 
-import com.zh.algs.test.linkedlist.ListNodeUtil;
-import com.zh.algs.test.linkedlist.Node;
+import com.zh.algs.ds.linkedlist.ListNodeUtil;
+import com.zh.algs.ds.linkedlist.Node;
 
 /**
  * Description:

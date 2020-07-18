@@ -1,4 +1,4 @@
-package com.zh.algs.test.linkedlist;
+package com.zh.algs.ds.linkedlist;
 
 /**
  * Description:
