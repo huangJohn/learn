@@ -1,7 +1,5 @@
 package com.zh.algs.ds.binarytree;
 
-import com.zh.algs.ds.linkedlist.Node;
-
 import java.util.Stack;
 
 /**
