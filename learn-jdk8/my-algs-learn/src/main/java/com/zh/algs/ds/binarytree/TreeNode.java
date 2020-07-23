@@ -14,9 +14,12 @@ public class TreeNode {
     public TreeNode left;
     public TreeNode right;
 
+    public TreeNode next;
+    public TreeNode parent;
+
     public TreeNode(int data) {
         this.data = data;
-        left = right = null;
+        left = right = next = parent = null;
     }
 
     public int getData() {
@@ -33,6 +36,22 @@ public class TreeNode {
 
     public void setLeft(TreeNode left) {
         this.left = left;
+    }
+
+    public TreeNode getNext() {
+        return next;
+    }
+
+    public void setNext(TreeNode next) {
+        this.next = next;
+    }
+
+    public TreeNode getParent() {
+        return parent;
+    }
+
+    public void setParent(TreeNode parent) {
+        this.parent = parent;
     }
 
     public TreeNode getRight() {
