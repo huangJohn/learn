@@ -47,7 +47,7 @@ public class DeleteANodeByGivenPosition {
         }
 
         Node tmp = head;
-        //处理head未知position==0
+        //处理head位置position==0
         if (position == 0) {
             head = tmp.next;
             return;
