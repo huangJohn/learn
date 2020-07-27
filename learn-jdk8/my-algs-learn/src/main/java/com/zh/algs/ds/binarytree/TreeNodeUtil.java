@@ -11,17 +11,54 @@ import java.util.Queue;
  */
 public class TreeNodeUtil {
 
+    public static void postorder(TreeNode treeNode) {
+        postorderUtil(treeNode);
+        System.out.println();
+    }
 
-    public static void inorder(TreeNode treeNode) {
+    private static void postorderUtil(TreeNode treeNode) {
         if (treeNode == null) {
             return;
         }
 
-        inorder(treeNode.left);
+        postorderUtil(treeNode.left);
+        postorderUtil(treeNode.right);
         System.out.print(treeNode.data + " -> ");
-        inorder(treeNode.right);
     }
 
+    public static void inorder(TreeNode treeNode) {
+        inorderUtil(treeNode);
+        System.out.println();
+    }
+
+    private static void inorderUtil(TreeNode treeNode) {
+        if (treeNode == null) {
+            return;
+        }
+
+        inorderUtil(treeNode.left);
+        System.out.print(treeNode.data + " -> ");
+        inorderUtil(treeNode.right);
+    }
+
+    public static TreeNode insertNodeInBst(TreeNode root, int key) {
+
+        if (root == null) {
+            return new TreeNode(key);
+        } else {
+            TreeNode temp = null;
+            if (key < root.data) {
+                temp = insertNodeInBst(root.left, key);
+                root.left = temp;
+                temp.parent = root;
+            } else {
+                temp = insertNodeInBst(root.right, key);
+                root.right = temp;
+                temp.parent = root;
+            }
+            return root;
+        }
+    }
 
     public static TreeNode insertByRootByLevelOrder(TreeNode root, int key) {
 
