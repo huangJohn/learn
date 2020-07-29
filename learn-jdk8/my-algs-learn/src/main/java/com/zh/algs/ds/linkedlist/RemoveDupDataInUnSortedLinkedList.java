@@ -72,9 +72,9 @@ public class RemoveDupDataInUnSortedLinkedList {
 
             while (ptr2.next != null) {
                 if (ptr1.data == ptr2.next.data) {
+                    ptr2.next = ptr2.next.next;
                     dup = ptr2.next;
                     System.gc();
-                    ptr2.next = ptr2.next.next;
                 } else {
                     ptr2 = ptr2.next;
                 }

@@ -16,5 +16,11 @@ public class Test {
 
         System.out.println(NumberUtils.isNumber(s));
 
+        String s1 = "-777";
+        System.out.println(Integer.valueOf(s1));
+
+        System.out.println(-Integer.MAX_VALUE);
+        System.out.println(Integer.MIN_VALUE);
+
     }
 }

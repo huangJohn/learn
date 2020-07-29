@@ -9,6 +9,12 @@ package com.zh.algs.ds.linkedlist;
 public class ListNodeUtil {
 
 
+    public static Node createHeadByAppend0() {
+        Node node = new Node(1);
+        node = append(node, 2);
+        return node;
+    }
+
     public static Node createHeadByAppend() {
         Node node = new Node(1);
         node = append(node, 2);

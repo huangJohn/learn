@@ -9,7 +9,7 @@ package com.zh.algs.ds.linkedlist;
 public class FindMiddleNodeOfLinkedList {
 
 
-    private Node head = ListNodeUtil.createHeadByAppend();
+    private Node head = ListNodeUtil.createHeadByAppend0();
 
 
     public static void main(String[] args) {
@@ -36,7 +36,7 @@ public class FindMiddleNodeOfLinkedList {
             return -1;
         }
 
-        while (fast != null && fast.next != null) {
+        while (fast.next != null && fast.next.next != null) {
 
             slow = slow.next;
             fast = fast.next.next;

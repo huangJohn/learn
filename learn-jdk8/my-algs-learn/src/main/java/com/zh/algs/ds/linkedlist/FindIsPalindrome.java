@@ -38,6 +38,10 @@ public class FindIsPalindrome {
 
             boolean isPalindrome = true;
 
+            /**
+             * Description:
+             * 回文需要一步next，长度偶数使prev落到前节点
+             */
             while (slow != null && fast != null && fast.next != null) {
                 fast = fast.next.next;
 
