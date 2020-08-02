@@ -28,6 +28,7 @@ public class Add2Nums2 {
         test.head1 = ListNodeUtil.push(test.head1, 9);
         test.head2 = ListNodeUtil.push(test.head2, 1);
         test.head2 = ListNodeUtil.push(test.head2, 8);
+//        test.head2 = ListNodeUtil.push(test.head2, 8);
         ListNodeUtil.print(test.head1);
         ListNodeUtil.print(test.head2);
         test.addTwo2();
@@ -53,6 +54,10 @@ public class Add2Nums2 {
 
         if (size1 == size2) {
             addSameLists(head1, head2);
+            if (carry > 0) {
+                push(carry);
+            }
+            return;
         }
 
         if (size1 < size2) {
