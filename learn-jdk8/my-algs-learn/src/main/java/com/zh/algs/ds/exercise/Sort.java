@@ -1,5 +1,7 @@
 package com.zh.algs.ds.exercise;
 
+import com.zh.algs.ds.linkedlist.ListNodeUtil;
+import com.zh.algs.ds.linkedlist.Node;
 import com.zh.algs.sorting.utils.SortingUtils;
 
 /**
@@ -9,6 +11,8 @@ import com.zh.algs.sorting.utils.SortingUtils;
  * Date: 2020/8/2
  */
 public class Sort {
+
+    private static Node head;
 
     public static void main(String[] args) {
 
@@ -35,6 +39,71 @@ public class Sort {
         insertSort(arr4);
         SortingUtils.printArray(arr4);
         System.out.println("*******");
+
+
+        head = ListNodeUtil.push(head, 1);
+        head = ListNodeUtil.push(head, 10);
+        head = ListNodeUtil.push(head, 8);
+        head = ListNodeUtil.push(head, 7);
+        head = ListNodeUtil.push(head, 4);
+        ListNodeUtil.print(head);
+
+        head = mergeLinkedList(head);
+        ListNodeUtil.print(head);
+    }
+
+    public static Node mergeLinkedList(Node head1) {
+
+        if (head1 == null || head1.next == null) {
+            return head1;
+        }
+
+        Node middle = getMiddle(head1);
+        Node middleNext = middle.next;
+        middle.next = null;
+
+        Node left = mergeLinkedList(head1);
+        Node right = mergeLinkedList(middleNext);
+        return sorted(left, right);
+    }
+
+    private static Node sorted(Node left, Node right) {
+
+        Node res = null;
+
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+
+        if (left.data <= right.data) {
+            res = left;
+            res.next = sorted(left.next, right);
+        } else {
+            res = right;
+            res.next = sorted(left, right.next);
+        }
+
+        return res;
+    }
+
+    private static Node getMiddle(Node head1) {
+
+        if (head1 == null) {
+            return null;
+        }
+
+        Node slow = head1;
+        Node fast = head1;
+
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
     }
 
     public static void mergeSort(int[] arr, int lo, int hi) {

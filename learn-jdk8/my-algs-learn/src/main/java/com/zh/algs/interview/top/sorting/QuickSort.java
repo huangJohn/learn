@@ -28,21 +28,26 @@ public class QuickSort {
 
     private static int partition(int[] arr, int lo, int hi) {
 
-        int pivot = arr[hi];
-        int i = lo - 1;
-        for (int j = lo; j < hi; j++) {
-            if (arr[j] <= pivot) {
-                i++;
-                int tmp = arr[j];
-                arr[j] = arr[i];
-                arr[i] = tmp;
+        int key = lo;
+        int tmp;
+        while (lo <= hi) {
+            while (lo <= hi && arr[lo] <= arr[key]) {
+                lo++;
             }
+            while (lo <= hi && arr[hi] >= arr[key]) {
+                hi--;
+            }
+            if (lo > hi) {
+                break;
+            }
+            tmp = arr[hi];
+            arr[hi] = arr[lo];
+            arr[lo] = tmp;
         }
-
-        int tmp = arr[i + 1];
-        arr[i + 1] = arr[hi];
-        arr[hi] = tmp;
-        return i + 1;
+        tmp = arr[hi];
+        arr[hi] = arr[key];
+        arr[key] = tmp;
+        return hi;
     }
 
 }
