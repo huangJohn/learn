@@ -14,8 +14,8 @@ import java.util.ListIterator;
 
 public class Graph {
 
-    private int V;//顶点
-    private LinkedList<Integer> adj[];//邻边
+    public int V;//顶点
+    public LinkedList<Integer> adj[];//邻边
 
     public Graph(int v) {
         V = v;

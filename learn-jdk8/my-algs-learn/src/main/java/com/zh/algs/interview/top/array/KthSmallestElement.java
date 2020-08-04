@@ -19,7 +19,7 @@ public class KthSmallestElement {
     public static int kThMax(int[] arr, int lo, int hi, int k) {
 
         if (k == 0) {
-            throw new RuntimeException("illeagal");
+            throw new RuntimeException("illegal");
         }
 
         int index = arr.length - k;
