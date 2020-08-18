@@ -15,7 +15,20 @@ public class LRUCacheClient {
         lruCache();
         lruCache2();
         lruCache3();
-        lruCache4();
+
+        CacheFactory cacheFactory = new LruCacheFactory();
+        Cache cache = cacheFactory.getCache("linkedlist", 5);
+        cache.put(1, "11");
+        cache.put(2, "11");
+        cache.put(3, "11");
+        cache.put(4, "11");
+        cache.put(5, "11");
+        System.out.println(cache.toString());
+        cache.put(6, "66");
+        cache.put(7, "77");
+        cache.get(2);
+        cache.get(4);
+        System.out.println(cache.toString());
 
     }
 
@@ -58,7 +71,7 @@ public class LRUCacheClient {
     static void lruCache2() {
         System.out.println();
         System.out.println("===========================LRU LinkedHashMap(delegation)实现===========================");
-        LRUCacheByDelegation<Integer, String> lru = new LRUCacheByDelegation<>(5);
+        LRUCacheWrapper<Integer, String> lru = new LRUCacheWrapper<>(5);
         lru.put(1, "11");
         lru.put(2, "11");
         lru.put(3, "11");
@@ -73,22 +86,5 @@ public class LRUCacheClient {
         System.out.println();
     }
 
-    static void lruCache4() {
-        System.out.println();
-        System.out.println("===========================FIFO LinkedHashMap默认实现===========================");
-        LRUCacheFIFO<Integer, String> lru = new LRUCacheFIFO<>(5);
-        lru.put(1, "11");
-        lru.put(2, "11");
-        lru.put(3, "11");
-        lru.put(4, "11");
-        lru.put(5, "11");
-        System.out.println(lru.toString());
-        lru.put(6, "66");
-        lru.get(2);
-        lru.put(7, "77");
-        lru.get(4);
-        System.out.println(lru.toString());
-        System.out.println();
-    }
 
 }

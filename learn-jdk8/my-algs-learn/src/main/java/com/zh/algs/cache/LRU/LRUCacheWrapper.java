@@ -11,13 +11,13 @@ import java.util.Set;
  * Author: zhuanghuang
  * Date: 2019-06-12
  */
-public class LRUCacheByDelegation<K, V> {
+public class LRUCacheWrapper<K, V> {
 
     private final int MAX_CACHE_SIZE;
     private final float DEFAULT_LOAD_FACTOR = 0.75f;
-    LinkedHashMap<K, V> map;
+    private LinkedHashMap<K, V> map;
 
-    public LRUCacheByDelegation(int cacheSize) {
+    public LRUCacheWrapper(int cacheSize) {
         MAX_CACHE_SIZE = cacheSize;
         //根据cacheSize和加载因子计算hashmap的capactiy，+1确保当达到cacheSize上限时不会触发hashmap的扩容
         //accessOrder=true，开启按照访问顺序排序
@@ -31,27 +31,27 @@ public class LRUCacheByDelegation<K, V> {
         };
     }
 
-    public synchronized void put(K key, V val) {
+    public void put(K key, V val) {
         map.put(key, val);
     }
 
-    public synchronized V get(K key) {
+    public V get(K key) {
         return map.get(key);
     }
 
-    public synchronized void remove(K key) {
+    public void remove(K key) {
         map.remove(key);
     }
 
-    public synchronized Set<Map.Entry<K, V>> getAll() {
+    public Set<Map.Entry<K, V>> getAll() {
         return map.entrySet();
     }
 
-    public synchronized int size() {
+    public int size() {
         return map.size();
     }
 
-    public synchronized void clear() {
+    public void clear() {
         map.clear();
     }
 
