@@ -18,6 +18,11 @@ public class Client {
         BeanTestA beanTestA = applicationContext.getBean(BeanTestA.class);
         BeanTestB beanTestB = applicationContext.getBean(BeanTestB.class);
 
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+        for (String b : beanDefinitionNames) {
+            System.out.println(b);
+        }
+
     }
 
 }
