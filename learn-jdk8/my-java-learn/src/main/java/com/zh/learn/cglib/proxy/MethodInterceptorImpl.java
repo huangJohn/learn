@@ -14,12 +14,18 @@ import java.lang.reflect.Method;
  */
 public class MethodInterceptorImpl implements MethodInterceptor {
 
+//    private EnhancerDemo target;
+//
+//    public MethodInterceptorImpl(EnhancerDemo target) {
+//        super();
+//        this.target = target;
+//    }
 
     @Override
     public Object intercept(Object object, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-        System.err.println("before invoke " + method);
+        System.out.println("before invoke " + method);
         Object result = proxy.invokeSuper(object, args);
-        System.err.println("after invoke " + method);
+        System.out.println("after invoke " + method);
         return result;
     }
 }

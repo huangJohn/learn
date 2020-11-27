@@ -20,13 +20,18 @@ public class EnhancerDemo {
         enhancer.setCallback(new MethodInterceptorImpl());
         EnhancerDemo enhancerDemo = (EnhancerDemo) enhancer.create();
         enhancerDemo.test();
+        enhancerDemo.b();
 
         System.out.println(enhancerDemo);
     }
 
     public void test() {
         System.out.println("EnhancerDemo test()");
+        b();
+    }
 
+    public void b() {
+        System.out.println("b");
     }
 
 }

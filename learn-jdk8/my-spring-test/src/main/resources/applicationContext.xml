@@ -4,7 +4,7 @@
        xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <aop:aspectj-autoproxy  expose-proxy="true" proxy-target-class="false"/>
+    <aop:aspectj-autoproxy  expose-proxy="true" proxy-target-class="true"/>
 
 <!--    <bean class="com.zh.learn.aop.aop.tutorial.example.EmployeeManager"-->
 <!--          id="employeeManager"/>-->
@@ -12,7 +12,7 @@
 <!--    <bean class="com.zh.learn.aop.aop.tutorial.example.EmployeeCRUDAspect"-->
 <!--          id="employeeCRUDAspect"/>-->
 
-    <context:component-scan base-package="com.zh.learn.bean.circle"/>
+<!--    <context:component-scan base-package="com.zh.learn.bean.circle"/>-->
     <context:component-scan base-package="com.zh.learn.aop.aop.tutorial.example.jdkproxy"/>
 
 
