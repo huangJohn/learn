@@ -1,5 +1,8 @@
 package com.zh.learn.basic_test;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -10,6 +13,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -46,6 +50,18 @@ public class Test {
 
         long l = (System.currentTimeMillis() - timestamp.getTime()) / 24 / 3600 / 1000;
 
+
+        String js = "{\"s\":[\"123\",\"456\"]}";
+        JSONObject jsonObject = JSONObject.parseObject(js);
+        JSONArray jsonArray = jsonObject.getJSONArray("\"s\"".replaceAll("\"",""));
+        System.out.println(jsonArray);
+        List<String> strings = jsonArray.toJavaList(String.class);
+        for (String s2 : strings) {
+            if (s2.equals("123")) {
+                System.out.println(true);
+            }
+        }
+        System.out.println(strings);
 
 
     }

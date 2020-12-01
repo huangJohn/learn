@@ -366,6 +366,12 @@
 
             <!--log end-->
 
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+
         </dependencies>
 
     </dependencyManagement>
