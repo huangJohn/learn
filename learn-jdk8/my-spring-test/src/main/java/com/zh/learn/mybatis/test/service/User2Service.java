@@ -15,4 +15,7 @@ public interface User2Service {
 
     void addRequiredException(User2 user2);
     void addRequiredNewException(User2 user2);
+
+    void addNested(User2 user2);
+    void addNestedException(User2 user2);
 }

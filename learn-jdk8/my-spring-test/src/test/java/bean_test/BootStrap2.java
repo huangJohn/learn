@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath*:springTest-context.xml"})
+@ContextConfiguration(locations = {"classpath*:springTest-context.xml"})
 public class BootStrap2 extends AbstractJUnit4SpringContextTests {
 
     @Autowired
@@ -40,7 +40,7 @@ public class BootStrap2 extends AbstractJUnit4SpringContextTests {
         user2.setName("lisi");
         user2Service.addRequired(user2);//succ
 
-        throw new RuntimeException();
+        throw new RuntimeException();//外部无事务，内部走独立事务，ex无影响
     }
 
     @Test(expected = RuntimeException.class)
@@ -51,7 +51,7 @@ public class BootStrap2 extends AbstractJUnit4SpringContextTests {
 
         User2 user2 = new User2();
         user2.setName("lisi");
-        user2Service.addRequiredException(user2);//fail
+        user2Service.addRequiredException(user2);//fail，外部无事务，内部独立事务，user1成功，user2独立事务自己ex失败
     }
 
     @Test(expected = RuntimeException.class)
@@ -103,4 +103,59 @@ public class BootStrap2 extends AbstractJUnit4SpringContextTests {
         userServiceCompose.test5();
     }
 
+    @Test(expected = RuntimeException.class)
+    public void test_with_trans_required_requiredNew_requireNewException_try() {
+        userServiceCompose.test6();
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void test_no_trans_requiredNested_requiredNested_throwEx() {
+        User1 user1 = new User1();
+        user1.setName("zhangsan");
+        user1Service.addNested(user1);//succ
+
+        User2 user2 = new User2();
+        user2.setName("lisi");
+        user2Service.addNested(user2);//succ
+
+        throw new RuntimeException();//外部无事务，内部走独立事务，ex无影响
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void test_no_trans_requiredNested_requiredNestedException() {
+        User1 user1 = new User1();
+        user1.setName("zhangsan");
+        user1Service.addNested(user1);//succ
+
+        User2 user2 = new User2();
+        user2.setName("lisi");
+        user2Service.addNestedException(user2);//fail
+
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void test_with_trans_requireNested_requireNested_requireNestedException_try() {
+        userServiceCompose.test7();
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void test_with_trans_requireNested_requireNested_requireNestedException() {
+        userServiceCompose.test8();
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void test_with_trans_requireNested_requireNested_throwEx() {
+        userServiceCompose.test9();
+    }
+
+    /**
+     * Description:
+     * REQUIRED和NESTED两种传播行为修饰的内部方法均属于外部方法事务，如果外部方法直接抛出异常，这两种传播行为
+     * 修饰的内部方法均被回滚，但是REQUIRED是加入型事务，和外部方法属于同一个事务，一旦REQUIRED事务抛出异常且被回滚，
+     * 外部事务方法也被回滚，而NESTED事务属于外部事务的子事务，有自己的内部savapoint，所以NESTED事务抛出异常被回滚，
+     * 外部事务中有处理catch操作，将不影响外部事务
+     *
+     * NESTED和REQUIRED_NEW都可做到内部方法回滚而不影响外部事务，但是NESTED是嵌套事务，外围事务回滚了，NESTED事务必然
+     * 回滚，而REQUIRED_NEW是内部新开事务，与外部事务独立，外部事务回滚不影响内部事务提交
+     */
 }

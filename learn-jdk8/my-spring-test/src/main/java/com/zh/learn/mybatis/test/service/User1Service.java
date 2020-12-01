@@ -14,4 +14,6 @@ public interface User1Service {
 
     void addRequiredNew(User1 user1);
 
+    void addNested(User1 user1);
+
 }
