@@ -25,6 +25,12 @@ public class User2ServiceImpl implements User2Service{
         user2Mapper.insert(user2);
     }
 
+    @Override
+    @Transactional
+    public boolean addRequired1(User2 user2) {
+        return user2Mapper.insert(user2) == 1;
+    }
+
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public void addRequiredNew(User2 user2) {
@@ -37,6 +43,18 @@ public class User2ServiceImpl implements User2Service{
         user2Mapper.insert(user2);
         throw new RuntimeException();
 
+    }
+
+    @Override
+    @Transactional
+    public boolean addRequiredException1(User2 user2) {
+        user2Mapper.insert(user2);
+        try {
+            //没有抛ex，不会回滚
+            throw new RuntimeException();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)

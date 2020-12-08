@@ -56,7 +56,7 @@ public class UserServiceCompose {
         User2 user2 = new User2();
         user2.setName("lisi");
         try {
-            user2Service.addRequiredException(user2);//fail，加入型事务ex，外部均fail。全部均失败提交
+            user2Service.addRequiredException(user2);//fail，加入型事务ex，local标记，全局执行rb，外部均fail。全部均失败提交
         } catch (Exception e) {
             System.out.println("user2Service.addRequiredException.");
         }
@@ -85,7 +85,7 @@ public class UserServiceCompose {
     public void test5() {
         User1 user1 = new User1();
         user1.setName("zhangsan");
-        user1Service.addRequired(user1);//fail
+        user1Service.addRequired(user1);//fail，受到下游throw ex
 
         User2 user2 = new User2();
         user2.setName("lisi");
@@ -110,7 +110,7 @@ public class UserServiceCompose {
         User2 user3 = new User2();
         user3.setName("lisi");
         try {
-            user2Service.addRequiredNewException(user3);//fail，内部ex不影响外部事务
+            user2Service.addRequiredNewException(user3);//fail，catch了,内部ex不影响外部事务
         } catch (Exception e) {
             System.out.println("回滚user3");
         }
@@ -161,5 +161,23 @@ public class UserServiceCompose {
         user2Service.addNested(user2);//fail
 
         throw new RuntimeException();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public boolean test10() {
+        boolean isSucc = true;
+        User1 user1 = new User1();
+        user1.setName("zhangsan");
+        isSucc = isSucc && user1Service.addRequired1(user1);
+
+        User2 user2 = new User2();
+        user2.setName("lisi");
+        isSucc = isSucc && user2Service.addRequired1(user2);
+
+        User2 user3 = new User2();
+        user3.setName("lisi_3");
+        isSucc = isSucc && user2Service.addRequiredException1(user3);
+        //false，内部没有抛出ex，所以接口是false，但是事务提交了
+        return isSucc;
     }
 }

@@ -26,6 +26,12 @@ public class User1ServiceImpl implements User1Service{
         user1Mapper.insert(user1);
     }
 
+    @Override
+    @Transactional
+    public boolean addRequired1(User1 user1) {
+        return user1Mapper.insert(user1) == 1;
+    }
+
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public void addRequiredNew(User1 user1) {

@@ -40,7 +40,7 @@ public class BootStrap2 extends AbstractJUnit4SpringContextTests {
         user2.setName("lisi");
         user2Service.addRequired(user2);//succ
 
-        throw new RuntimeException();//外部无事务，内部走独立事务，ex无影响
+//        throw new RuntimeException();//外部无事务，内部走独立事务，ex无影响
     }
 
     @Test(expected = RuntimeException.class)
@@ -158,4 +158,10 @@ public class BootStrap2 extends AbstractJUnit4SpringContextTests {
      * NESTED和REQUIRED_NEW都可做到内部方法回滚而不影响外部事务，但是NESTED是嵌套事务，外围事务回滚了，NESTED事务必然
      * 回滚，而REQUIRED_NEW是内部新开事务，与外部事务独立，外部事务回滚不影响内部事务提交
      */
+
+    @Test
+    public void test_return() {
+        boolean b = userServiceCompose.test10();
+        System.out.println(b);
+    }
 }

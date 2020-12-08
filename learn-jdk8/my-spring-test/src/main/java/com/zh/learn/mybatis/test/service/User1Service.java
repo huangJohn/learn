@@ -11,6 +11,7 @@ import com.zh.learn.mybatis.test.model.User1;
 public interface User1Service {
 
     void addRequired(User1 user1);
+    boolean addRequired1(User1 user1);
 
     void addRequiredNew(User1 user1);
 
